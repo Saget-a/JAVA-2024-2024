@@ -5,7 +5,6 @@ class Lab2 {
         double a = -1.49, b = 23.4, c = 1.23, d = 2.542;
         y = Math.sqrt(Math.abs(Math.sin(a) - (4 * Math.log(b)) / Math.pow(c, d)));
         
-
         double a1 = 3.56, b1 = 1.02, c1 = 3, d1 = 2.43;
         y1 = 2 * Math.log(Math.pow(b1, a1)) + Math.abs(Math.asin(-Math.sqrt(d1/c1)));
 
