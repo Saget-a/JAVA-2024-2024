@@ -55,8 +55,10 @@ public class Lab3 {
 
         double result1 = task1(3,30);
         System.out.printf("1 результат  %.5f%n", result1);
+        
         double result2 = task2(-2,5);
         System.out.printf("2 результат  %.5f%n", result2);
+
         double result3 = task3(4);
         System.out.printf("3 результат  %.5f%n", result3);
     }
