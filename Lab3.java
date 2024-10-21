@@ -1,5 +1,5 @@
 public class Lab3 {
-// собственно завдання 1
+// собственно завдання 21 51 67
     public static double task1(double m, double k){
 
         double sum = 0;
