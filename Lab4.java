@@ -29,7 +29,6 @@ public class Lab4 {
 
         double sum = 0;
 
-        // Проходимо по елементах з індексами, що кратні 2
         for (int i = 0; i < array.length; i += 2) {
             if (array[i] < 0) {
                 sum += array[i];
@@ -43,19 +42,16 @@ public class Lab4 {
 
     public static int[] task67(int[] A, int[] B) {
 
-        // Перевірка, що масиви однакової довжини
         if (A.length != B.length) {
             System.out.println("ERROR 67.01");
         }
     
-        // Створення масиву C
         int n = A.length;
         int[] C = new int[2 * n];
-    
-        // Заповнення масиву C елементами з A та B
+
         for (int i = 0; i < n; i++) {
-            C[2 * i] = A[i];       // елемент з A
-            C[2 * i + 1] = B[i];   // елемент з B
+            C[2 * i] = A[i];       
+            C[2 * i + 1] = B[i];   
         }
     return C;
     }
@@ -78,6 +74,8 @@ public class Lab4 {
         System.err.println("Чергування +-    >>> " + task51(testArray1));
         System.err.println("Додатный массив  >>> " + task51(testArray2));
         System.err.println("Від'ємний массив >>> " + task51(testArray3) + "\n");
+
+        System.err.println("тест завдання 67");
 
         int [] result67 = task67(A,B);
         
