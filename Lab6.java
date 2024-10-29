@@ -1,6 +1,5 @@
 public class Lab6 {
-// 3 7
-
+    
 // 3 Перетворити значення int у об’єкт String, що представляє собою число у вісімковій системі числення
     public static String toOctalStr(int num){
         String octalString = Integer.toOctalString(num);
@@ -20,10 +19,8 @@ public class Lab6 {
                 count++;
             }
         }
-
-return count;
-}
-
+    return count;
+    }
 
     public static void main(String[] args ) {
         int number = 511;
