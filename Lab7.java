@@ -69,13 +69,13 @@ class Institute {
     }
 }
 
-public class Main {
+public class Lab7 {
     public static void main(String[] args) {
         // Створення студентів
         Student s1 = new Student("Saget", "Hishikigi", "12345", 97.5);
         Student s2 = new Student("Tian", "Tod", "67890", 89.0);
         Student s3 = new Student("Anna", "Yanagi", "11223", 95.0);
-        Student s4 = new Student("JailBeard", "Reivencroft", "44556", 100.0);
+        Student s4 = new Student("JailBird", "Reivencroft", "44556", 100.0);
         Student s5 = new Student("Gomba", "Nimune", "446666", 99.0);
 
         // Створення факультетів
