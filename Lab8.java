@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 class Student {
     private String firstName;
@@ -31,18 +29,18 @@ class Student {
 
 class Faculty {
     private String name;
-    private List<Student> students;
+    private Set<Student> students;
 
     public Faculty(String name) {
         this.name = name;
-        this.students = new ArrayList<>();
+        this.students = new HashSet<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Student> getStudents() {
+    public Set<Student> getStudents() {
         return students;
     }
 
@@ -53,58 +51,67 @@ class Faculty {
 
 class Institute {
     private String name;
-    private List<Faculty> faculties;
+    private Set<Faculty> faculties;
 
     public Institute(String name) {
         this.name = name;
-        this.faculties = new ArrayList<>();
+        this.faculties = new HashSet<>();
     }
 
     public void addFaculty(Faculty faculty) {
         faculties.add(faculty);
     }
 
-    public List<Faculty> getFaculties() {
+    public Set<Faculty> getFaculties() {
         return faculties;
+    }
+
+    // New functionality: Map of faculties and their students
+    public Map<String, Set<Student>> getFacultyStudentMap() {
+        Map<String, Set<Student>> facultyStudentMap = new TreeMap<>();
+        for (Faculty faculty : faculties) {
+            facultyStudentMap.put(faculty.getName(), faculty.getStudents());
+        }
+        return facultyStudentMap;
     }
 }
 
-public class Lab7 {
+public class Lab8 {
     public static void main(String[] args) {
-        // Створення студентів
+        // Create students
         Student s1 = new Student("Saget", "Hishikigi", "12345", 97.5);
         Student s2 = new Student("Tian", "Tod", "67890", 89.0);
         Student s3 = new Student("Anna", "Yanagi", "11223", 95.0);
         Student s4 = new Student("JailBird", "Reivencroft", "44556", 100.0);
         Student s5 = new Student("Gomba", "Nimune", "446666", 99.0);
 
-        // Створення факультетів
+        // Create faculties
         Faculty faculty1 = new Faculty("Computer Science");
         faculty1.addStudent(s1);
         faculty1.addStudent(s2);
         faculty1.addStudent(s5);
 
-
         Faculty faculty2 = new Faculty("Mathematics");
         faculty2.addStudent(s3);
         faculty2.addStudent(s4);
 
-        // Створення інституту
+        // Create institute
         Institute institute = new Institute("National University");
         institute.addFaculty(faculty1);
         institute.addFaculty(faculty2);
 
-        // 1) Загальна кількість студентів (типізований ітератор)
+        // 1) Total number of students (typed iterator)
         int totalStudents = 0;
         for (Faculty faculty : institute.getFaculties()) {
             totalStudents += faculty.getStudents().size();
         }
         System.out.println("Total number of students: " + totalStudents);
+        System.out.println(); 
 
-        // 2) Факультет з найбільшою кількістю студентів (нетипізований ітератор)
+        // 2) Faculty with the most students (untyped iterator)
         Faculty maxFaculty = null;
         int maxStudents = 0;
-        Iterator facultiesIterator = institute.getFaculties().iterator(); // нетипізований ітератор
+        Iterator facultiesIterator = institute.getFaculties().iterator(); // untyped iterator
         while (facultiesIterator.hasNext()) {
             Faculty faculty = (Faculty) facultiesIterator.next();
             if (faculty.getStudents().size() > maxStudents) {
@@ -115,9 +122,10 @@ public class Lab7 {
         if (maxFaculty != null) {
             System.out.println("Faculty with the most students: " + maxFaculty.getName() + " (" + maxStudents + " students)");
         }
+        System.out.println();
 
-        // 3) Список студентів із середнім балом у діапазоні 95..100 (типізований цикл for-each)
-        List<Student> topStudents = new ArrayList<>();
+        // 3) List of students with an average grade between 95 and 100 (typed for-each loop)
+        Set<Student> topStudents = new HashSet<>();
         for (Faculty faculty : institute.getFaculties()) {
             for (Student student : faculty.getStudents()) {
                 if (student.getAverageGrade() >= 95 && student.getAverageGrade() <= 100) {
@@ -129,6 +137,18 @@ public class Lab7 {
         System.out.println("Students with an average grade between 95 and 100:");
         for (Student student : topStudents) {
             System.out.println(student);
+        }
+        System.out.println(); 
+
+        // 4) Print all faculties and their students using Map
+        Map<String, Set<Student>> facultyStudentMap = institute.getFacultyStudentMap();
+        System.out.println("Faculties and their students:");
+        for (Map.Entry<String, Set<Student>> entry : facultyStudentMap.entrySet()) {
+            System.out.println("Faculty: " + entry.getKey());
+            for (Student student : entry.getValue()) {
+                System.out.println("  - " + student);
+            }
+            System.out.println(); 
         }
     }
 }
